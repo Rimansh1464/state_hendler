@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:food_app/helper/db_helper.dart';
-import 'package:food_app/helper/like_db_helper.dart';
 import 'package:food_app/utils/cololrs.dart';
 import 'package:food_app/view/product_like.dart';
 import 'package:provider/provider.dart';
@@ -26,8 +25,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
-  Future<List<Foods>?> AddData() async {
-    Provider.of<ProductProvider>(context,listen: false).fetchdata();
+  AddData() {
+    Provider.of<ProductProvider>(context, listen: false).fetchdata();
     //print("$dbFood");
   }
 
@@ -35,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void initState() {
     super.initState();
-    //dbFood = DBhelper.dBhelper.fetchData();
+
     AddData();
   }
 
@@ -56,9 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 InkWell(
-                  onTap: () {
-
-                  },
+                  onTap: () {},
                   child: Container(
                     height: 40,
                     width: 40,
@@ -152,10 +149,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     width: 10,
                   ),
                   InkWell(
-                    onTap: (){
-
-                        Provider.of<ProductProvider>(context).dbFood = DBhelper.dBhelper.searchCategory(name: onChang);
-
+                    onTap: () {
+                      Provider.of<ProductProvider>(context,listen: false).dbFood =
+                          DBhelper.dBhelper.searchCategory(name: onChang);
                     },
                     child: Icon(
                       Icons.search,
@@ -174,12 +170,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       print(val);
                       onChang = val;
                       print(onChang);
-                      setState(() {
-                        Provider.of<ProductProvider>(context,listen: false).dbFood = DBhelper.dBhelper.searchCategory(name: onChang);
-                      });
+setState(() {
+  Provider.of<ProductProvider>(context, listen: false)
+      .dbFood =
+      DBhelper.dBhelper.searchCategory(name: onChang);
+});
+
                     },
-
-
                   )),
                 ],
               ),
@@ -191,14 +188,11 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 InkWell(
-                  onTap: (){
-                    setState(() {
-                      Provider.of<ProductProvider>(context).fetchdata();
+                  onTap: () {
+                    Provider.of<ProductProvider>(context).fetchdata();
 
-                      onChang ="";
-                      textEditingController.clear();
-                    });
-
+                    onChang = "";
+                    textEditingController.clear();
                   },
                   child: Text(
                     "Food",
@@ -223,7 +217,7 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 20,
             ),
             FutureBuilder(
-              future:Provider.of<ProductProvider>(context).dbFood,
+              future: Provider.of<ProductProvider>(context).dbFood,
               builder: (context, snapshot) {
                 if (snapshot.hasError) {
                   return Center(
@@ -270,20 +264,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                             setState(() {
                                               starList[i] = !starList[i];
 
-                                              Provider.of<ProductProvider>(
-                                                      context,
-                                                      listen: false)
-                                                  .likeProduct(
-                                                      likeList: allfood[i],
-                                                      i: i);
-                                              // print("islike ====== ${ starList[i]}");
-                                              DBhelper.dBhelper.update(name: allfood[i].foodName, like: starList[i].toString());
-                                              // dbFood = DBhelper.dBhelper.fetchData();
-                                              // print(
-                                              //     "like===${allfood[i].like}");
-                                              // print(
-                                              //     "provider == ${Provider.of<ProductProvider>(context, listen: false).likes}");
+                                              DBhelper.dBhelper.update(
+                                                  name: allfood[i].foodName,
+                                                  like: starList[i].toString());
                                             });
+                                            Provider.of<ProductProvider>(
+                                                    context,
+                                                    listen: false)
+                                                .likeProduct(likeList: allfood[i], i: i);
                                           },
                                           child: (allfood[i].like == "true")
                                               ? Icon(Icons.favorite)
@@ -341,11 +329,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     listen: false)
                                                 .addproduct(
                                                     productList: allfood[i]);
-                                            print("like===${allfood[0].like}");
-                                            print("like===${allfood[1].like}");
-                                            print("like===${allfood[2].like}");
-                                            print("like===${allfood[3].like}");
-                                            print("like===${allfood[4].like}");
+
                                           },
                                           child: Container(
                                             height: 38,

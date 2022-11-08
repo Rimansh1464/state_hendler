@@ -63,7 +63,12 @@ class _like_screenState extends State<like_screen> {
                     );
                   } else if (snapshot.hasData) {
                     List<Foods>? allLike = snapshot.data;
-                    return Expanded(
+                    return (allLike!.isEmpty)? Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Center(child: Text("No Data..."),),
+                      ],
+                    ):Expanded(
                       child: GridView.count(
                         crossAxisCount: 2,
                         childAspectRatio: 0.70,
@@ -71,7 +76,7 @@ class _like_screenState extends State<like_screen> {
                         mainAxisSpacing: 0.10,
                         children: List.generate(
                           allLike!.length,
-                          (i) => SingleChildScrollView(
+                              (i) => SingleChildScrollView(
                             child: InkWell(
                               onTap: () {
                                 Navigator.push(
@@ -96,17 +101,19 @@ class _like_screenState extends State<like_screen> {
                                     children: [
                                       Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.end,
+                                        MainAxisAlignment.end,
                                         children: [
                                           InkWell(
                                               onTap: () {
 
-                                                 setState(() {
-                                                   DBhelper.dBhelper.update(
-                                                       name: allLike[i].foodName,
-                                                       like: 'false');
-                                                   print("like===${allLike[i].like}");
-                                                 });
+                                                setState(() {
+                                                  DBhelper.dBhelper.update(
+                                                      name: allLike[i].foodName,
+                                                      like: 'false');
+                                                  print("like===${allLike[i].like}");
+                                                });
+                                                Provider.of<ProductProvider>(context,listen: false).fetchdata();
+
                                                 //Provider.of<ProductProvider>(context,listen: false).islike(name: allLike[i]);
                                                 Provider.of<ProductProvider>(context,listen: false).likefetchdata();
 
@@ -133,17 +140,17 @@ class _like_screenState extends State<like_screen> {
                                       ),
                                       Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
+                                        MainAxisAlignment.spaceAround,
                                         children: [
                                           Text(
                                             "20 min",
                                             style:
-                                                TextStyle(color: Colors.grey),
+                                            TextStyle(color: Colors.grey),
                                           ),
                                           Text(
                                             "4.5",
                                             style:
-                                                TextStyle(color: Colors.grey),
+                                            TextStyle(color: Colors.grey),
                                           ),
                                         ],
                                       ),
@@ -152,7 +159,7 @@ class _like_screenState extends State<like_screen> {
                                       ),
                                       Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                        MainAxisAlignment.start,
                                         children: [
                                           Text(
                                             "     15.00",
@@ -164,10 +171,10 @@ class _like_screenState extends State<like_screen> {
                                           InkWell(
                                             onTap: () {
                                               Provider.of<ProductProvider>(
-                                                      context,
-                                                      listen: false)
+                                                  context,
+                                                  listen: false)
                                                   .addproduct(
-                                                      productList: allLike[i]);
+                                                  productList: allLike[i]);
                                             },
                                             child: Container(
                                               height: 38,
@@ -180,13 +187,13 @@ class _like_screenState extends State<like_screen> {
                                               ),
                                               decoration: BoxDecoration(
                                                   borderRadius:
-                                                      BorderRadius.only(
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                  20),
-                                                          bottomRight:
-                                                              Radius.circular(
-                                                                  20)),
+                                                  BorderRadius.only(
+                                                      topLeft:
+                                                      Radius.circular(
+                                                          20),
+                                                      bottomRight:
+                                                      Radius.circular(
+                                                          20)),
                                                   color: primary),
                                             ),
                                           ),
@@ -194,7 +201,7 @@ class _like_screenState extends State<like_screen> {
                                       ),
                                       Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.end,
+                                        MainAxisAlignment.end,
                                         children: [],
                                       ),
                                     ],

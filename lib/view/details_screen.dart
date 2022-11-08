@@ -140,19 +140,29 @@ class _DetailsScreensState extends State<DetailsScreens> {
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment
                                             .spaceAround,
-                                        children: [
-                                          Text("-", style: TextStyle(
-                                              fontSize: 20,
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold),),
-                                          Text("1", style: TextStyle(
-                                              fontSize: 20,
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold),),
-                                          Text("+", style: TextStyle(
-                                              fontSize: 20,
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold),),
+                                        children:  [
+                                          InkWell(
+                                            onTap:(){
+                                              Provider.of<ProductProvider>(context,listen: false).addproduct(productList:Provider.of<ProductProvider>(context,listen: false).cartProduct[widget.id.toInt()] );
+                                            },
+                                            child: Text("+", style: TextStyle(
+                                                fontSize: 20,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold),),
+                                          ),
+                                          // Text("${Provider.of<ProductProvider>(context).cartProduct[widget.id].quantity}", style: TextStyle(
+                                          //     fontSize: 20,
+                                          //     color: Colors.white,
+                                          //     fontWeight: FontWeight.bold),),
+                                          InkWell(
+                                            onTap: (){
+                                              Provider.of<ProductProvider>(context,listen: false).removeProduct(food: Provider.of<ProductProvider>(context,listen: false).cartProduct[widget.id]);
+                                            },
+                                            child: Text("-", style: TextStyle(
+                                                fontSize: 20,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold),),
+                                          ),
                                         ],
                                       ),
                                     ),
@@ -196,7 +206,11 @@ class _DetailsScreensState extends State<DetailsScreens> {
                               SizedBox(height: 30,),
                               InkWell(
                                 onTap: (){
-                                  // Navigator.pushNamed(context,"/");
+                                  Provider.of<ProductProvider>(
+                                      context,
+                                      listen: false)
+                                      .addproduct(
+                                      productList: FoodList[widget.id]);
 
                                 },
                                 child: Container(
