@@ -1,0 +1,32 @@
+[
+  {
+    "foodName": "Burger",
+    "price": "15",
+    "like":"false"
+  },
+  {
+    "foodName": "Pizza",
+    "price": "15",
+    "like":"false"
+  },
+  {
+    "foodName": "Pasta",
+    "price": "15",
+    "like":"false"
+  },
+  {
+    "foodName": "Noodles",
+    "price": "15",
+    "like":"false"
+  },
+  {
+    "foodName": "Gujarati dish",
+    "price": "15",
+    "like":"false"
+  },
+  {
+    "foodName": "French Fry",
+    "price": "15",
+    "like": "false"
+  }
+]
