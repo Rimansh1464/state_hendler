@@ -12,7 +12,7 @@ Future<List<Foods>>? dbLike;
 List<bool> starList = List.generate(20, (index) => false);
 bool like = false;
 bool likes = false;
-
+int i = 0;
 
 void fetchdata(){
   dbFood = DBhelper.dBhelper.fetchData();
@@ -42,7 +42,7 @@ void likeProduct({required Foods likeList,required int i}){
 
 
 void addproduct({required Foods productList}){
-  int i = 0;
+
   for (Foods addProduct in cartProduct) {
     if (addProduct.id == productList.id) {
       productList.quantity = productList.quantity + 1;

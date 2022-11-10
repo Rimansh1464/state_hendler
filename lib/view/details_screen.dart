@@ -72,16 +72,23 @@ class _DetailsScreensState extends State<DetailsScreens> {
                             const SizedBox(
                               width: 70,
                             ),
-                            Container(
-                              height: 35,
-                              width: 35,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  color: Colors.white24),
-                              child: const Center(
-                                child: Icon(
-                                  Icons.favorite_border,
-                                  color: Colors.white,
+                            InkWell(
+                              onTap: (){
+
+                                Provider.of<ProductProvider>(
+                                    context,
+                                    listen: false)
+                                    .likeProduct(likeList: FoodList[widget.id], i: widget.id);
+                              },
+                              child: Container(
+                                height: 35,
+                                width: 35,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: Colors.white24),
+                                child:  Center(
+                                  child:Icon(Icons.favorite,color: Colors.white,)
+
                                 ),
                               ),
                             ),
@@ -123,7 +130,7 @@ class _DetailsScreensState extends State<DetailsScreens> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "erthy",
+                                    "Foods",
                                     style: TextStyle(
                                         fontSize: 25,
                                         color: primary,
@@ -150,10 +157,10 @@ class _DetailsScreensState extends State<DetailsScreens> {
                                                 color: Colors.white,
                                                 fontWeight: FontWeight.bold),),
                                           ),
-                                          // Text("${Provider.of<ProductProvider>(context).cartProduct[widget.id].quantity}", style: TextStyle(
-                                          //     fontSize: 20,
-                                          //     color: Colors.white,
-                                          //     fontWeight: FontWeight.bold),),
+                                          Text("1", style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),),
                                           InkWell(
                                             onTap: (){
                                               Provider.of<ProductProvider>(context,listen: false).removeProduct(food: Provider.of<ProductProvider>(context,listen: false).cartProduct[widget.id]);

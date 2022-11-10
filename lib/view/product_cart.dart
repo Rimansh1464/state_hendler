@@ -50,7 +50,7 @@ class _cart_screenState extends State<cart_screen> {
                     child: Row(
                       children: [
                         SizedBox(
-                          width: 20,
+                          width: 10,
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -61,7 +61,7 @@ class _cart_screenState extends State<cart_screen> {
                               child: Center(
                                 child: Image.asset("${FoodList[i].image}"),
                               ),
-                            )
+                            ),
                           ],
                         ),
                         SizedBox(
@@ -85,7 +85,7 @@ class _cart_screenState extends State<cart_screen> {
                                   style: TextStyle(fontSize: 17),
                                 ),
                                 SizedBox(
-                                  width: 25,
+                                  width: 20,
                                 ),
                                 Container(
                                   height: 33,
@@ -104,9 +104,9 @@ class _cart_screenState extends State<cart_screen> {
                                                 0xff9ccc90)),
                                             child: Icon(Icons.add)),
                                       ),
-                                      const SizedBox(width: 5,),
+                                      const SizedBox(width: 3,),
                                       Text("${Provider.of<ProductProvider>(context).cartProduct[i].quantity}"),
-                                      const SizedBox(width: 5,),
+                                      const SizedBox(width: 3,),
                                       InkWell(
                                         onTap: (){
                                           Provider.of<ProductProvider>(context,listen: false).removeProduct(food: Provider.of<ProductProvider>(context,listen: false).cartProduct[i]);

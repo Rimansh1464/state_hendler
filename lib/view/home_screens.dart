@@ -264,9 +264,9 @@ setState(() {
                                             setState(() {
                                               starList[i] = !starList[i];
 
-                                              DBhelper.dBhelper.update(
-                                                  name: allfood[i].foodName,
-                                                  like: starList[i].toString());
+                                              // DBhelper.dBhelper.update(
+                                              //     name: allfood[i].foodName,
+                                              //     like: starList[i].toString());
                                             });
                                             Provider.of<ProductProvider>(
                                                     context,
